@@ -18,11 +18,13 @@ function Dice(){
     num.innerHTML="Number"+":"+"8";
    }
 }
+
  x1=["🐵"];
  o1=["🦁"];
 function playerone(){
     if( dice==5 || dice==4 || variable==4 && token1==true ){
         z=document.getElementById("e3").value="🐵";
+
         z1=document.getElementById("e6").value=x1;
         variable++;
         token1=false;
@@ -54,6 +56,11 @@ function box23(){
       z=document.getElementById("e3").value=" ";
       z1=document.getElementById("e6").value=" ";
       token1=true;
+
+      if(x1==x1){
+        z=document.getElementById("e3").value=x1+" "+x1;
+      }
+
     }
    else if(dice==2 && token1==false){  
         e5=document.getElementById("e5").value=x1;
@@ -79,6 +86,7 @@ function box23(){
       z1=document.getElementById("e6").value=" ";
       token1=true;
     }
+
     else if(dice==1 && token2==false){
       e4=document.getElementById("e4").value=x1;
        z=document.getElementById("e3").value=" ";
@@ -110,6 +118,7 @@ function box23(){
        token2=true;
      }
 }
+
 function box3(){
   if(dice==1 && token2==false){
    z=document.getElementById("a2").value=o1; 
