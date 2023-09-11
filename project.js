@@ -18,11 +18,13 @@ function Dice(){
     num.innerHTML="Number"+":"+"8";
    }
 }
- x1="🐵";
- o1="🦁";
+
+ x1=["🐵"];
+ o1=["🦁"];
 function playerone(){
     if( dice==5 || dice==4 || variable==4 && token1==true ){
-        z=document.getElementById("e3").value=x1;
+        z=document.getElementById("e3").value="🐵";
+
         z1=document.getElementById("e6").value=x1;
         variable++;
         token1=false;
@@ -54,9 +56,11 @@ function box23(){
       z=document.getElementById("e3").value=" ";
       z1=document.getElementById("e6").value=" ";
       token1=true;
+
       if(x1==x1){
         z=document.getElementById("e3").value=x1+" "+x1;
       }
+
     }
    else if(dice==2 && token1==false){  
         e5=document.getElementById("e5").value=x1;
@@ -82,57 +86,39 @@ function box23(){
       z1=document.getElementById("e6").value=" ";
       token1=true;
     }
-    if(dice==1 && token1==true && x1==x1){
-      z1=document.getElementById("print").innerHTML="ROLL AGAIN";
-    }
-    if(dice==2 && token1==true && x1==x1){
-      z1=document.getElementById("print").innerHTML="ROLL AGAIN";
-    }
-    if(dice==3 && token1==true && x1==x1){
-      z1=document.getElementById("print").innerHTML="ROLL AGAIN";
-    }
-    if(dice==4 && token1==true && x1==x1){
-      z1=document.getElementById("print").innerHTML="ROLL AGAIN";
-    }
-    if(dice==5 && token1==true && x1==x1){
-      z1=document.getElementById("print").innerHTML="ROLL AGAIN";
-    }
-     if(dice==1  && token2==false || token1==false){
-      e4=document.getElementById("e4").value=o1;
+
+    else if(dice==1 && token2==false){
+      e4=document.getElementById("e4").value=x1;
        z=document.getElementById("e3").value=" ";
        z1=document.getElementById("e6").value=" ";
        token2=true;
-       token1=true;
      }
-     if(dice==2  && token2==false || token1==false){  
-         e5=document.getElementById("e5").value=o1;
+    else if(dice==2 && token2==false){  
+         e5=document.getElementById("e5").value=x1;
          z=document.getElementById("e3").value=" ";
          z1=document.getElementById("e6").value=" ";
-         token2=false;
-         token1=true;
+         token2=true;
      }
-      if(dice==3  && token2==false || token1==false){
+     else if(dice==3 && token2==false){
        z=document.getElementById("e3").value=" ";
-      d5=document.getElementById("d5").value=o1;
-      z1=document.getElementById("e6").value=" "
-      token2=false;
-      token1=true;
+      d5=document.getElementById("d5").value=x1;
+      z1=document.getElementById("e6").value=" ";
+      token2=true;
      }
-       if(dice==4  && token2==false || token1==false){
+     else  if(dice==4 && token2==false){
        z=document.getElementById("e3").value=" ";
-       c5=document.getElementById("c5").value=o1;  
+       c5=document.getElementById("c5").value=x1;  
        z1=document.getElementById("e6").value=" ";
-       token2=false;
-       token1=true;
+       token2=true;
      }
-      if(dice==5  && token2==false || token1==false){
+     else if(dice==5 && token2==false){
        z=document.getElementById("e3").value=" ";
-       a3=document.getElementById("a3").value=o1;
+       a3=document.getElementById("a3").value=x1;
        z1=document.getElementById("e6").value=" ";
-       token2=false;
-       token1=true;
+       token2=true;
      }
-    }
+}
+
 function box3(){
   if(dice==1 && token2==false){
    z=document.getElementById("a2").value=o1; 
