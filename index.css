@@ -1,7 +1,14 @@
 #butn{
     text-align: center;
-    width: 2cm;
-    height: 1cm;
+    width: 3cm;
+    height: 1.5cm;
+    margin-left: 18cm;
+    margin-bottom: 3cm;
+}
+#print{
+    
+    margin-left: 18cm;
+    font-size: x-large;
 }
 #a1,#a2,#a3,#a4,#a5,
 #b1,#b2,#b3,#b4,#b5,
