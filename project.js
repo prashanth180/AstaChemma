@@ -10,25 +10,25 @@ var token1=true;
 var token2=true;
 var user1=true;
 var user2=true;
+active_tokens = {'e3': [false, false, false, false]}
 //on initial load below are the positions of the coins
 present_position= {'e3':['e3','e3','e3','e3']}
 function Dice(){
-
   const values = [1, 2, 3, 4, 8];
   const randomIndex = Math.floor(Math.random() * values.length);
   const dice = values[randomIndex];
   let d=document.getElementById("print");
   d.innerHTML="Number"+":"+dice;
   
-  if(dice==8 && user1==true || token1==false){
-    e6=document.getElementById('e3').value="🐵"
+  if( dice==8 && user1==true || token1==true && active_tokens['e3'][0]==true){
+    
+    e6=document.getElementById('e3').value="🐵1"
     user1=false 
-   if(dice==1 || dice==2 || dice==3 ){
-      e6=document.getElementById('e3').value=" "
-    }
-          token1==false
+    token1=false
+    
   }
-else if(user1==false || token1==false){ 
+
+else if(user1==false || token1==false  && active_tokens['e3'][0]==false){ 
   old_position = present_position['e3'][0];
   present_index_of_e3 = PATH1.indexOf(present_position['e3'][0]);
   new_index_of_e3 = (present_index_of_e3 + dice) < PATH1.length ? present_index_of_e3 + dice : null
@@ -40,15 +40,15 @@ else if(user1==false || token1==false){
   console.log(`Moved from ${present_position['e3'][0]} to ${PATH1[new_index_of_e3]} on dice value of ${dice}`);
   present_position['e3'][0] = PATH1[new_index_of_e3];
   document.getElementById(old_position).value="";
-  document.getElementById(present_position['e3'][0]).value="🐵";
+  document.getElementById(present_position['e3'][0]).value="🐵1";
   d.innerHTML="Number"+":"+dice;
   if(new_index_of_e3==PATH1.length-1){
     alert("congrats");
   }
   user1=false
+  token1=true
 }
 }
-
 //  x1="🐵";
 //  o1="🦁";
 function playerone(){
