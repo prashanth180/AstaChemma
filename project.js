@@ -1,153 +1,57 @@
-var dice;
+PATH1=["e3","e4","e5","d5","c5","b5","a5","a4","a3","a2","a1","b1","c1","d1","e1","e2","d2","c2","b2","b3","b4","c4","d4","d3","c3"]
+PATH2=["c5","b5","a5","a4","a3","a2","a1","b1","c1","d1","e1","e2","e3","e4","e5","d5","d4","d3","d2","c2","b2","b3","b4","c4","c3"]
+PATH3=["a3","a2","a1","b1","c1","d1","e1","e2","e3","e4","e5","d5","c5","b5","a5","a4","b4","c4","d4","d3","d2","c2","b2","b3","c3"]
+PATH4=["c1","d1","e1","e2","e3","e4","e5","d5","c5","b5","a5","a4","a3","a2","a1","b1","b2","b3","b4","c4","d4","d3","d2","c2","c3"]
+
 var variable=1;
-var variable1=1;
 var num;
-sides=5;
 var z1,z2,z3,z4;
 var token1=true;
 var token2=true;
 var user1=true;
 var user2=true;
+active_tokens = {'e3': [false, false, false, false]}
+//on initial load below are the positions of the coins
+present_position= {'e3':['e3','e3','e3','e3']}
 function Dice(){
-  dice= Math.floor(Math.random()*sides)+1;
-  num=document.getElementById("print");
-  if(dice==1 || dice==2 || dice==3 || dice==4 && token1==true){
-    num.innerHTML="Number"+":"+dice;
-   }
-   else if(dice==5){
-    num.innerHTML="Number"+":"+"8";
-   }
-}
+  const values = [1, 2, 3, 4, 8];
+  const randomIndex = Math.floor(Math.random() * values.length);
+  const dice = values[randomIndex];
+  let d=document.getElementById("print");
+  d.innerHTML="Number"+":"+dice;
+  
+  if( dice==8 && user1==true || token1==true && active_tokens['e3'][0]==true){
+    
+    e6=document.getElementById('e3').value="🐵1"
+    user1=false 
+    token1=false
+    
+  }
 
- x1=["🐵"];
- o1=["🦁"];
+else if(user1==false || token1==false  && active_tokens['e3'][0]==false){ 
+  old_position = present_position['e3'][0];
+  present_index_of_e3 = PATH1.indexOf(present_position['e3'][0]);
+  new_index_of_e3 = (present_index_of_e3 + dice) < PATH1.length ? present_index_of_e3 + dice : null
+  if(new_index_of_e3 == null){
+    alert("entered dice value exceeds limit");
+    return present_index_of_e3;
+  }
+  console.log(`Moved from ${present_index_of_e3} to ${new_index_of_e3} on dice value of ${dice}`);
+  console.log(`Moved from ${present_position['e3'][0]} to ${PATH1[new_index_of_e3]} on dice value of ${dice}`);
+  present_position['e3'][0] = PATH1[new_index_of_e3];
+  document.getElementById(old_position).value="";
+  document.getElementById(present_position['e3'][0]).value="🐵1";
+  d.innerHTML="Number"+":"+dice;
+  if(new_index_of_e3==PATH1.length-1){
+    alert("congrats");
+  }
+  user1=false
+  token1=true
+}
+}
+//  x1="🐵";
+//  o1="🦁";
 function playerone(){
-    if( dice==5 || dice==4 || variable==4 && token1==true ){
-        z=document.getElementById("e3").value="🐵";
-
-        z1=document.getElementById("e6").value=x1;
-        variable++;
-        token1=false;
-     }
-     if(variable>5){
-      z=document.getElementById("e3").value=" ";
-      z=document.getElementById("e6").value=" ";
-      z1=document.getElementById("print").innerHTML="no tokens for player one";
-      user1=true;
-    }
-}
-function playertwo(){
-  if( dice==5 || dice==4 ||variable1==4 && token2==true ){
-    z=document.getElementById("a3").value="🦁";
-    z1=document.getElementById("e7").value=o1;
-    variable1++;
-    token2=false;
- }
- if(variable1>5){
-  z=document.getElementById("a3").value=" ";
-  z=document.getElementById("e7").value=" ";
-  z1=document.getElementById("print").innerHTML="no tokens for player two";
-   user2=true;
-}
-}
-function box23(){
-        if(dice==1 && token1==false){
-     e4=document.getElementById("e4").value=x1;
-      z=document.getElementById("e3").value=" ";
-      z1=document.getElementById("e6").value=" ";
-      token1=true;
-
-      if(x1==x1){
-        z=document.getElementById("e3").value=x1+" "+x1;
-      }
-
-    }
-   else if(dice==2 && token1==false){  
-        e5=document.getElementById("e5").value=x1;
-        z=document.getElementById("e3").value=" ";
-        z1=document.getElementById("e6").value=" ";
-        token1=true;
-    }
-    else if(dice==3 && token1==false){
-      z=document.getElementById("e3").value=" ";
-     d5=document.getElementById("d5").value=x1;
-     z1=document.getElementById("e6").value=" ";
-     token1=true;
-    }
-    else  if(dice==4 && token1==false){
-      z=document.getElementById("e3").value=" ";
-      c5=document.getElementById("c5").value=x1;  
-      z1=document.getElementById("e6").value=" ";
-      token1=true;
-    }
-    else if(dice==5 && token1==false){
-      z=document.getElementById("e3").value=" ";
-      a3=document.getElementById("a3").value=x1;
-      z1=document.getElementById("e6").value=" ";
-      token1=true;
-    }
-
-    else if(dice==1 && token2==false){
-      e4=document.getElementById("e4").value=x1;
-       z=document.getElementById("e3").value=" ";
-       z1=document.getElementById("e6").value=" ";
-       token2=true;
-     }
-    else if(dice==2 && token2==false){  
-         e5=document.getElementById("e5").value=x1;
-         z=document.getElementById("e3").value=" ";
-         z1=document.getElementById("e6").value=" ";
-         token2=true;
-     }
-     else if(dice==3 && token2==false){
-       z=document.getElementById("e3").value=" ";
-      d5=document.getElementById("d5").value=x1;
-      z1=document.getElementById("e6").value=" ";
-      token2=true;
-     }
-     else  if(dice==4 && token2==false){
-       z=document.getElementById("e3").value=" ";
-       c5=document.getElementById("c5").value=x1;  
-       z1=document.getElementById("e6").value=" ";
-       token2=true;
-     }
-     else if(dice==5 && token2==false){
-       z=document.getElementById("e3").value=" ";
-       a3=document.getElementById("a3").value=x1;
-       z1=document.getElementById("e6").value=" ";
-       token2=true;
-     }
+    
 }
 
-function box3(){
-  if(dice==1 && token2==false){
-   z=document.getElementById("a2").value=o1; 
-    a3=document.getElementById("a3").value=" ";
-    z1=document.getElementById("e7").value=" ";
-    token2=true;
-  }
-  else if(dice==2 && token2==false){
-   z=document.getElementById("a1").value=o1;
-    a3=document.getElementById("a3").value=" ";
-    z1=document.getElementById("e7").value=" ";
-    token2=true;
-  }
-  else if(dice==3 && token2==false){
-    a3=document.getElementById("a3").value=" ";
-   z=document.getElementById("b1").value=o1;
-   z1=document.getElementById("e7").value=" ";
-    token2=true;
-  }
-  else if(dice==4 && token2==false){
-    a3=document.getElementById("a3").value=" ";
-   z=document.getElementById("c1").value=o1;
-   z1=document.getElementById("e7").value=" ";
-    token2=true;
-  }
-  else if(dice==5 && token2==false){
-    a3=document.getElementById("a3").value=" ";
-   z=document.getElementById("e3").value=o1;
-   z1=document.getElementById("e7").value=" ";
-    token2=true;
-  }
-}
